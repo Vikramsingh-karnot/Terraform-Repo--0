@@ -2,7 +2,6 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "rg_vikram" {
-  name     = "rg-vikram"
-  location = "westus2"
+module "project0" {
+  source = "./Module-Project#0"
 }
