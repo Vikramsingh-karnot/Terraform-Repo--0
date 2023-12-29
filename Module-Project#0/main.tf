@@ -1,12 +1,12 @@
 # Creating a resource group
 resource "azurerm_resource_group" "resource_group_project0" {
- name = "Rg-vp0"
- location = "eastus"
+ name = var.resource_group_name
+ location = var.location 
 }
 
 #Create Storage Account 
 resource "azurerm_storage_account" "storage_account_project0" {
-  name                     = "storageaccountvp0"
+  name                     = var.storage_account_name
   resource_group_name      = azurerm_resource_group.resource_group_project0.name
   location                 = azurerm_resource_group.resource_group_project0.location
   account_tier             = "Standard"
@@ -25,5 +25,5 @@ resource "azurerm_storage_blob" "blob_project0" {
   storage_container_name = "$web"
   type = "Block"
   content_type = "text/html"
-  source_content = "<h1>Hello, This a website deployed using terraform by Vikram ;) </h1>"
+  source_content = var.source_content
 }
