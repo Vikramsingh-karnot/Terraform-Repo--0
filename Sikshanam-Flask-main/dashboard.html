@@ -1,0 +1,355 @@
+{% extends 'base.html' %}
+{% block body %}
+<div>
+    <section class="fifty text-center" style="background-color: #f4c983;">
+        <h1 style="color: #194350;font-weight:bold;font-size: 65px;padding-top: 40px;">Dashboard</h1>
+        <i class="fad fa-angle-double-down fa-4x"></i>
+        <img src="static/svg/dashboard.svg" style="height: 400px;margin:10px;width: 400px;">
+        <i class="fad fa-angle-double-down fa-4x"></i>
+    </section>
+    <div class="container">
+        <section class="py-4" style="height: 100vh;margin: 15px 0px 140px 0px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex">
+                        <ul id="tabsJustified" class="nav nav-pills flex-column">
+                            <li class="nav-item "><a href="" data-target="#notes" data-toggle="tab"
+                                    class="nav-link md text-uppercase active pt-2 pb-2 mb-1" style="color: #184d47"><i
+                                        class="fad fa-edit mr-3 fa-2x"></i>Notes</a>
+                            </li>
+                            <li class="nav-item "><a href="" data-target="#papers" data-toggle="tab"
+                                    class="nav-link md text-uppercase pt-2 pb-2 mb-1" style="color: #184d47"><i
+                                        class="fad fa-copy mr-3 fa-2x"></i>Papers</a>
+                            </li>
+
+                            {% if usertype == "teacher" %}
+                            <li class="nav-item "><a href="" data-target="#notifications" data-toggle="tab"
+                                    class="nav-link md text-uppercase pt-2 pb-2 mb-1" style="color: #184d47"><i
+                                        class="fad fa-bell mr-3 fa-2x"></i>Notify</a>
+                            </li>
+                            {% endif %}
+
+                            {% if usertype == "teacher" %}
+                            <li class="nav-item "><a href="" data-target="#email" data-toggle="tab"
+                                    class="nav-link md text-uppercase pt-2 pb-2 mb-1" style="color: #184d47"><i
+                                        class="fas fa-mail-bulk mr-3 fa-2x"></i>Send
+                                    Mail</a>
+                            </li>
+                            {% endif %}
+
+                            <li class="nav-item "><a href="" data-target="#attendance" data-toggle="tab"
+                                    class="nav-link md text-uppercase pt-2 pb-2 mb-1" style="color: #184d47"><i
+                                        class="far fa-clipboard-user mr-3 fa-2x"></i>Attendance</a>
+                            </li>
+                            <li class="nav-item "><a href="" data-target="#lectures" data-toggle="tab"
+                                    class="nav-link md text-uppercase pt-2 pb-2 mb-1" style="color: #184d47"><i
+                                        class="fad fa-keynote mr-3 fa-2x"></i>Lectures</a>
+                            </li>
+                            <li class="nav-item "><a href="" data-target="#chatbot" data-toggle="tab"
+                                class="nav-link md text-uppercase pt-2 pb-2 mb-1" style="color: #184d47"><i
+                                    class="fad fa-robot mr-3 fa-2x"></i>Chatbot</a>
+                            </li>
+                            {% if usertype == "teacher" %}
+                            <li class="nav-item "><a href="" data-target="#paperupload" data-toggle="tab"
+                                    class="nav-link md text-uppercase pt-2 pb-2 mb-1" style="color: #184d47"
+                                    target="tp"><i class="fas fa-cloud-upload-alt mr-3 fa-2x"></i>Paper</a></li>
+
+                            <li class="nav-item "><a href="" data-target="#noteupload" data-toggle="tab"
+                                    class="nav-link md text-uppercase pt-2 pb-2 mb-1" style="color: #184d47"
+                                    target="tn"><i class="fas fa-cloud-upload-alt mr-3 fa-2x"></i>Notes</a></li>
+                            
+                            <li class="nav-item "><a href="" data-target="#downloadAttendance" data-toggle="tab"
+                                        class="nav-link md text-uppercase pt-2 pb-2 mb-1" style="color: #184d47"
+                                        target="tn"><i class="fas fa-cloud-upload-alt mr-3 fa-2x"></i>Download Attendance</a></li>
+                            {% endif %}
+
+
+                        </ul>
+                        <div class="tab-content border rounded w-100">
+                            <div id="notes" class="tab-pane p fade show active " style="background-color: transparent;">
+                                <div class="row">
+                                    <!--   -------------------------------- Notes--------------------------------------------------->
+
+                                    {% for note in notes %}
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="row" style="margin:15px 0 0 15px;text-align: center;">
+                                            <div class="col-lg-9 col-md-9 col-sm-9"
+                                                style="background-color: #3a6351;padding: 8px;border-radius: 10px 0 0 10px;">
+                                                <a href="static/media/notes/{{ note[2] }}">
+                                                    <h5 class="mt-2" style="color: #f2edd7;">{{ note[1] }}</h5>
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3"
+                                                style="background-color: #FFFFFF;border:2px #1e212d solid;padding: 8px;border-radius:0 10px 10px 0 ;">
+                                                <a href="static/media/notes/{{ note[2] }}" download> <i
+                                                        class="far fa-download mt-2 fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+
+                            <!--   -------------------------------- Papers  --------------------------------------------------->
+
+                            <div id="papers" class="tab-pane p fade " style="background-color: transparent;">
+                                <div class="row">
+
+                                    {% for paper in papers %}
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="row" style="margin:15px 0 0 15px;text-align: center;">
+                                            <div class="col-lg-9 col-md-9 col-sm-9"
+                                                style="background-color: #3a6351;padding: 8px;border-radius: 10px 0 0 10px;color: #FFFFFF">
+                                                <a href="/papers/{{ paper[2] }}">
+                                                    <h5 class="mt-2" style="color: #f2edd7;">{{ paper[1] }}</h5>
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-3"
+                                                style="background-color: #FFFFFF;border:2px #1e212d solid;padding: 8px;border-radius:0 10px 10px 0 ;">
+                                                <a href="/papers/{{ paper[2] }}" download> <i
+                                                        class="far fa-download mt-2 fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+
+                            <!--   -------------------------------- Teacher Notifications  --------------------------------------------------->
+                            <div id="notifications" class="tab-pane fade" style="background-color: transparent;">
+
+
+                                <div class="row m-2">
+
+                                    <form action="/notification" method="post" enctype="multipart/form-data"
+                                        class="formy">
+                                        <fieldset class="form-group">
+                                            <legend class="border-bottom mb-4">
+                                                Send Notifications
+                                            </legend>
+                                        </fieldset>
+                                        <div class="form-group">
+                                            <select class="form-select form-control" name="year" id="usertype" required>
+                                                <option value="firstyear" selected>First Year</option>
+                                                <option value="secondyear">Second Year</option>
+                                                <option value="thirdyear">Third Year</option>
+                                            </select>
+                                            <br>
+                                            <input type="text" name="title" class="form-control"
+                                                placeholder="Enter Title" required>
+                                            <br>
+                                            <textarea type="text" name="content" class="form-control"
+                                                placeholder="Enter Content" required></textarea>
+
+                                            <input type="hidden" name="type" value="notification" />
+
+                                            <br><br>
+                                            <button class="btn btn-outline-info" type="submit">Send</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                            <!--   -------------------------------- Bulk Email to class  --------------------------------------------------->
+                            <div id="email" class="tab-pane fade" style="background-color: transparent;">
+                                <form action="/sendmail" method="post" enctype="multipart/form-data" class="formy">
+                                    <fieldset class="form-group">
+                                        <legend class="border-bottom mb-4">
+                                            Send Mail
+                                        </legend>
+                                    </fieldset>
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <select class="form-select form-control" name="year" id="usertype" required>
+                                                <option value="firstyear" selected>First Year</option>
+                                                <option value="secondyear">Second Year</option>
+                                                <option value="thirdyear">Third Year</option>
+                                            </select>
+                                            <br>
+                                            <input type="text" name="subject" class="form-control"
+                                                placeholder="Enter Subject" required>
+                                            <br>
+                                            <textarea type="text" name="body" class="form-control"
+                                                placeholder="Enter Body" required></textarea>
+
+                                            <br><br>
+                                            <button class="btn btn-outline-info" type="submit">Send</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!--   -------------------------------- Attendance  --------------------------------------------------->
+                            <div id="attendance" class="tab-pane fade" style="background-color: transparent;">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-8  offset-lg-2">
+                                            <h3 class="mt-5">Make sure your face is properly visible in camera.</h3>
+                                            <button type="button" class="btn btn-info btn-md"
+                                                onclick="showAttendance()">Give Attendance</button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="myModal" role="dialog">
+                                                <div class="modal-dialog">
+
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Attendance Taken (*If your name is
+                                                                visible)</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <img id="attendanceImage" src="" width="100%">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default"
+                                                                onclick="window.location.reload()"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--   --------------------------------  Lectures  --------------------------------------------------->
+                            <div id="lectures" class="tab-pane fade" style="background-color: transparent;">
+                                <div class="container">
+                                    
+                                                <button class="btn btn-info btn-md" style="color: white;"><a href="http://meet.sikshanam.com">Attend Lecture</a></button>
+
+                                    <!-- <iframe class="responsive-iframe" allowfullscreen src=""></iframe> -->
+                                </div> 
+                            </div>
+
+                            <!--   --------------------------------  Chatbot  --------------------------------------------------->
+                            <div id="chatbot" class="tab-pane fade" style="background-color: transparent;">
+                                <div class="container">
+                                    <iframe
+                                        src="https://www.chatbase.co/chatbot-iframe/dl7ObBL115qzIUMnMRccb"
+                                        title="Chatbot"
+                                        width="100%"
+                                        style="height: 100%; min-height: 700px"
+                                        frameborder="0"
+                                        ></iframe>
+
+                                </div> 
+                            </div>
+
+                            <!--   -------------------------------- Download attendence  --------------------------------------------------->
+                            <div id="downloadAttendance" class="tab-pane fade" style="background-color: transparent;">
+                                <div class="content-section">
+                                    <form action="/attendance-download" method="post" enctype="multipart/form-data" class="formy">
+                                        <fieldset class="form-group">
+                                            <legend class="border-bottom mb-4">
+                                                Download Attendence
+                                            </legend>
+                                        </fieldset>
+                                        <div class="form-group">
+                                            <br>
+                                            <input type="date" class="form-control" id="attendancedate" name="attendancedate" />
+                                            <br><br>
+                                            <button class="btn btn-outline-info" type="submit">Download</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <!--   -------------------------------- Papers upload  --------------------------------------------------->
+                            <div id="paperupload" class="tab-pane fade" style="background-color: transparent;">
+                                <!-- <iframe scrolling="no" name="tp" src="" frameBorder="0"></iframe> -->
+                                <div class="content-section">
+                                    <form action="/dashboard" method="post" enctype="multipart/form-data" class="formy">
+                                        <fieldset class="form-group">
+                                            <legend class="border-bottom mb-4">
+                                                Upload Papers
+                                            </legend>
+                                        </fieldset>
+                                        <div class="form-group">
+                                            <input type="text" name="papername" class="form-control"
+                                                placeholder="Display Name" required>
+                                            <br>
+                                            <input type="hidden" name="type" value="papers" />
+                                            <div class="file-drop-area">
+                                                <span class="choose-file-button">Choose files</span>
+                                                <span class="file-message">or drag and drop files here</span>
+                                                <input class="file-input" type="file" name="file" onchange="
+                                                    $(document).on('change', '.file-input', function () {
+                                                        var filesCount = $(this)[0].files.length;
+                                                        var textbox = $(this).prev();
+                                                        if (filesCount === 1) {
+                                                            var fileName = $(this).val().split('\\').pop();
+                                                            textbox.text(fileName);
+                                                        } else {
+                                                            textbox.text(filesCount + ' files selected');
+                                                        }
+                                                    });
+                                                " multiple>
+                                            </div>
+                                            <br><br>
+                                            <button class="btn btn-outline-info" type="submit">Upload</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!--   -------------------------------- Notes upload --------------------------------------------------->
+                            <div id="noteupload" class="tab-pane fade" style="background-color: transparent;">
+                                <form action="/dashboard" method="post" enctype="multipart/form-data" class="formy">
+                                    <fieldset class="form-group">
+                                        <legend class="border-bottom mb-4">
+                                            Upload Notes
+                                        </legend>
+                                    </fieldset>
+                                    <div class="form-group">
+                                        <input type="text" name="notename" class="form-control"
+                                            placeholder="Display Name" required>
+                                        <br>
+                                        <input type="hidden" name="type" value="notes" />
+                                        <div class="file-drop-area">
+                                            <span class="choose-file-button">Choose files</span>
+                                            <span class="file-message">or drag and drop files here</span>
+                                            <input class="file-input" type="file" name="file" onchange="
+                                                $(document).on('change', '.file-input', function () {
+                                                    var filesCount = $(this)[0].files.length;
+                                                    var textbox = $(this).prev();
+                                                    if (filesCount === 1) {
+                                                        var fileName = $(this).val().split('\\').pop();
+                                                        textbox.text(fileName);
+                                                    } else {
+                                                        textbox.text(filesCount + ' files selected');
+                                                    }
+                                                });
+                                            " multiple>
+                                        </div>
+                                        <br><br>
+                                        <button class="btn btn-outline-info" type="submit">Upload</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</section>
+<script>
+    function showAttendance() {
+        var imageElement = document.getElementById('attendanceImage');
+        imageElement.src = "{{ url_for('attendence') }}";
+        $('#myModal').modal('show');
+    }
+  
+
+</script>
+{% endblock %}

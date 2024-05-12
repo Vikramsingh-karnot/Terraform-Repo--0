@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="content-section">
+    <form action="/update_notification/{{ notification[0]}}" method="post" enctype="multipart/form-data" class="formy">
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">
+                Send Notifications
+            </legend>
+        </fieldset>
+        <div class="form-group">
+            <select class="form-select form-control" name="year" id="usertype" required>
+                <option selected>{{ notification[4]}}</option>
+            </select>
+            <input type="text" name="title" class="form-control" placeholder="Enter Title" value="{{ notification[2]}}"
+                required>
+            <br>
+            <textarea type="text" name="content" class="form-control" placeholder="Enter Content"
+                required>{{ notification[3]}}</textarea>
+
+            <input type="hidden" name="type" value="notification" />
+
+            <br><br>
+            <button class="btn btn-outline-info" type="submit">Send</button>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

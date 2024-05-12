@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="content-section">
+  <div class="media">
+    <img class="rounded-circle account-img" height="200px" width="200px" src="">
+    <div class="media-body pt-5">
+      <h2 class="account-heading ml-5">Username</h2>
+      <p class="text-secondary ml-5">Email</p>
+    </div>
+  </div>
+  <form method="POST" enctype="multipart/form-data">
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4 pt-3">Profile Info</legend>
+    </fieldset>
+    <div class="form-group">
+      <button class="btn btn-outline-info" type="submit">Update</button>
+    </div>
+  </form>
+</div>
+{% endblock%}

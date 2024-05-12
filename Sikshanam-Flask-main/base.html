@@ -1,0 +1,105 @@
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href='/static/main.css' />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <title>Portal</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="site-header sticky-top"
+            style="height: 70px;font-weight:bold;background-color: #f0e4d7; font-size:15px;font-family: 'RocknRoll One', sans-serif;">
+            <div class="container d-flex flex-column flex-md-row justify-content-between">
+                <a class="" href="" aria-label="Product">
+                    <img src="/static/images/logo.png" height="70px" />
+                </a>
+                {% if usertype == "teacher" %}
+                <a class=" d-none d-md-inline-block py-4" href="{{ url_for('home') }}">Home</a>
+                <a class=" d-none d-md-inline-block py-4" href="{{ url_for('notification') }}">Notifications</a>
+                <a class=" d-none d-md-inline-block py-4" href="{{ url_for('timetable') }}">Timetable</a>
+                <a class=" d-none d-md-inline-block py-4" href="{{ url_for('profile') }}">Profile</a>
+                <a class=" d-none d-md-inline-block py-4" href="{{ url_for('about') }}">About</a>
+                <a class=" d-none d-md-inline-block py-4" href="{{ url_for('logout') }}">Logout</a>
+                {% elif usertype == "student" %}
+                <a class=" d-none d-md-inline-block py-4" href="{{ url_for('home') }}">Home</a>
+                <a class=" d-none d-md-inline-block py-4" href="{{ url_for('notification') }}">Notifications</a>
+                <a class=" d-none d-md-inline-block py-4" href="{{ url_for('timetable') }}">Timetable</a>
+                <a class=" d-none d-md-inline-block py-4" href="{{ url_for('profile') }}">Profile</a>
+                <a class=" d-none d-md-inline-block py-4" href="{{ url_for('about') }}">About</a>
+                <a class=" d-none d-md-inline-block py-4" href="#"></a>
+                <a class=" d-none d-md-inline-block py-4" href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                <a class=" d-none d-md-inline-block py-4" href="#"></a>
+                <a class=" d-none d-md-inline-block py-4" href="#"></a>
+                <a class=" d-none d-md-inline-block py-4" href="#"></a>
+                <a class=" d-none d-md-inline-block py-4" href="#"></a>
+                <a class=" d-none d-md-inline-block py-4" href="#"></a>
+                <a class=" d-none d-md-inline-block py-4" href="#"></a>
+                <a class=" d-none d-md-inline-block py-4" href="/login">Login</a>
+                <a class=" d-none d-md-inline-block py-4" href="/register">Register</a>
+                {% endif %}
+            </div>
+        </nav>
+        {% block body %}{% endblock %}
+        <footer class="bg-dark text-center text-white mt-auto">
+            <!-- Grid container -->
+            <div class="container p-4 pb-0">
+                <!-- Section: Social media -->
+                <section class="mb-4">
+                    <!-- Facebook -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!"
+                        role="button"><i class="fab fa-facebook-f"></i></a>
+
+                    <!-- Twitter -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee;" href="#!"
+                        role="button"><i class="fab fa-twitter"></i></a>
+
+                    <!-- Instagram -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac;" href="#!"
+                        role="button"><i class="fab fa-instagram"></i></a>
+
+                    <!-- Linkedin -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!"
+                        role="button"><i class="fab fa-linkedin-in"></i></a>
+
+                </section>
+                <!-- Section: Social media -->
+            </div>
+            <!-- Grid container -->
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: #343a40;">
+                © 2024 Copyright:
+                <a class="text-white" href="https://mdbootstrap.com/">sikshanam.edu.in</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

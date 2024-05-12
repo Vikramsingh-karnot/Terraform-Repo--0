@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container-fluid">
+    <div class="content-section">
+        <div class="row">
+            <div class="col-lg-7 text-center">
+                <img src="/static/svg/login.svg" style="height: 500px;margin:50px;width: 500px;">
+            </div>
+            <div class="col-lg-5">
+                <form method="post" class="formy" action="/register">
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">
+                            Create An account
+                        </legend>
+                    </fieldset>
+                    <div class="form-group">
+                        <select class="form-select form-control" name="usertype" id="usertype" required>
+                            <option value="student" selected>Student</option>
+                            <option value="teacher">Teacher</option>
+                        </select>
+                        <br>
+                        <input type="text" name="firstname" class="form-control" placeholder="First Name" required>
+                        <br>
+                        <input type="text" name="lastname" class="form-control" placeholder="Last Name" required>
+                        <br>
+                        <input type="email" name="email" class="form-control" placeholder="Email" required>
+                        <br>
+                        <select class="form-select form-control" name="year" id="year" required>
+                            <option value="First Year" selected>First Year</option>
+                            <option value="Second Year">Second Year</option>
+                            <option value="Third Year">Third Year</option>
+                        </select>
+                        <br>
+                        <input id="password" name="password" type="password" pattern="^\S{6,}$"
+                            onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;"
+                            placeholder="Password" class="form-control" required>
+                        <br>
+                        <input id="password_two" name="password_two" type="password" pattern="^\S{6,}$"
+                            onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');"
+                            placeholder="Verify Password" class="form-control" required>
+                        <br>
+                        <hr>
+                        <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                    </div>
+                    <div class="border-top pt-3">
+                        <small class="text-muted">
+                            Already have an account? <a class="ml-2" href="/login">Sign In</a>
+                        </small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('usertype').addEventListener('change', function () {
+        var yearField = document.getElementById('year');
+        if (this.value === 'teacher') {
+            yearField.style.display = 'none';
+        } else {
+            yearField.style.display = 'block';
+        }
+    });
+</script>
+{% endblock %}

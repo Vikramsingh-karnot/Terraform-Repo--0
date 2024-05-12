@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container-fluid">
+    <div class="content-section">
+        <div class="row">
+            <div class="col-lg-7 text-center">
+                <img src="/static/svg/login.svg" style="height: 500px;margin:50px;width: 500px;">
+            </div>
+            <div class="col-lg-5">
+                <form method="POST" class="mb-5 formy" action="/login" style="margin-top: 100px;">
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Log In</legend>
+                    </fieldset>
+                    <div class="form-group">
+                        {% if error %}
+                        <p style="color: red;">{{ error }}</p>
+                        {% endif %}
+                        <select class="form-select form-control" name="usertype" id="usertype" required>
+                            <option value="student" selected>Student</option>
+                            <option value="teacher">Teacher</option>
+                        </select>
+                        <br>
+                        <input type="email" name="email" class="form-control" placeholder="Email" required>
+                        <br>
+                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                        <hr>
+                        <button class="btn btn-outline-info" type="submit">Login</button>
+                        <small class="text-muted ml-2">
+                            <a href="">Forgot Password?</a>
+                        </small>
+                    </div>
+                    <div class="border-top pt-3">
+                        <small class="text-muted">
+                            Need An Account? <a class="ml-2" href="/register">Sign Up Now</a>
+                        </small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

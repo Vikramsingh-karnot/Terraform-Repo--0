@@ -1,0 +1,479 @@
+{% extends 'base.html' %}
+{% block body %}
+<section class="fifty text-center" style="background-color: #fdb827">
+    <h1 style="color: #194350;font-weight:bold;font-size: 65px;padding-top: 40px;">Timetable</h1>
+    <i class="fad fa-angle-double-down fa-4x"></i>
+    <img src="static/svg/timetable.svg" style="height: 400px;margin:10px;width: 400px;">
+    <i class="fad fa-angle-double-down fa-4x"></i>
+</section>
+<br><br>
+<div class="container">
+    <div class="timetable-img text-center">
+        <img src="" alt="">
+    </div>
+    <div class="table-responsive">
+
+        {# ---------------------------------------Student Timetable ----------------------------------#}
+        {% if usertype == 'student' %}
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr class="bg-light-gray">
+                    <td class="text-uppercase">Time
+                    </td>
+                    <td class="text-uppercase slot">08:00</td>
+                    <td class="text-uppercase slot">09:00</td>
+                    <td class="text-uppercase slot">10:00</td>
+                    <td class="text-uppercase slot">11:00</td>
+                    <td class="text-uppercase slot">11:50</td>
+                    <td class="text-uppercase slot">12:30</td>
+                    <td class="text-uppercase slot">01:30</td>
+                    <td class="text-uppercase slot">02:30</td>
+                    <td class="text-uppercase slot">03:30</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="align-middle">Monday</td>
+
+                    {% for subject in timetable %}
+                    {% if subject[2] == 'monday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Tuesday</td>
+                    {% for subject in timetable %}
+                    {% if subject[2] == 'tuesday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Wednesday</td>
+
+                    {% for subject in timetable %}
+                    {% if subject[2] == 'wednesday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Thursday</td>
+
+                    {% for subject in timetable %}
+                    {% if subject[2] == 'thursday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Friday</td>
+
+                    {% for subject in timetable %}
+                    {% if subject[2] == 'friday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Saturday</td>
+
+                    {% for subject in timetable %}
+                    {% if subject[2] == 'saturday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+        {% endif %}
+
+        {% if usertype == 'teacher' %}
+        {# ---------------------------------------Teacher Fy Timetable ----------------------------------#}
+        <h3>Update First Year Timetable</h3>
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr class="bg-light-gray">
+                    <td class="text-uppercase">Time
+                    </td>
+                    <td class="text-uppercase slot">08:00</td>
+                    <td class="text-uppercase slot">09:00</td>
+                    <td class="text-uppercase slot">10:00</td>
+                    <td class="text-uppercase slot">11:00</td>
+                    <td class="text-uppercase slot">11:50</td>
+                    <td class="text-uppercase slot">12:30</td>
+                    <td class="text-uppercase slot">01:30</td>
+                    <td class="text-uppercase slot">02:30</td>
+                    <td class="text-uppercase slot">03:30</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="align-middle">Monday</td>
+
+                    {% for subject in fytimetable %}
+                    {% if subject[2] == 'monday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Tuesday</td>
+                    {% for subject in fytimetable %}
+                    {% if subject[2] == 'tuesday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Wednesday</td>
+
+                    {% for subject in fytimetable %}
+                    {% if subject[2] == 'wednesday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Thursday</td>
+
+                    {% for subject in fytimetable %}
+                    {% if subject[2] == 'thursday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Friday</td>
+
+                    {% for subject in fytimetable %}
+                    {% if subject[2] == 'friday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Saturday</td>
+
+                    {% for subject in fytimetable %}
+                    {% if subject[2] == 'saturday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+
+        {# ---------------------------------------Teacher Sy Timetable ----------------------------------#}
+        <br>
+        <h3>Update Second Year Timetable</h3>
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr class="bg-light-gray">
+                    <td class="text-uppercase">Time
+                    </td>
+                    <td class="text-uppercase slot">08:00</td>
+                    <td class="text-uppercase slot">09:00</td>
+                    <td class="text-uppercase slot">10:00</td>
+                    <td class="text-uppercase slot">11:00</td>
+                    <td class="text-uppercase slot">11:50</td>
+                    <td class="text-uppercase slot">12:30</td>
+                    <td class="text-uppercase slot">01:30</td>
+                    <td class="text-uppercase slot">02:30</td>
+                    <td class="text-uppercase slot">03:30</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="align-middle">Monday</td>
+
+                    {% for subject in sytimetable %}
+                    {% if subject[2] == 'monday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Tuesday</td>
+                    {% for subject in sytimetable %}
+                    {% if subject[2] == 'tuesday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Wednesday</td>
+
+                    {% for subject in sytimetable %}
+                    {% if subject[2] == 'wednesday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Thursday</td>
+
+                    {% for subject in sytimetable %}
+                    {% if subject[2] == 'thursday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Friday</td>
+
+                    {% for subject in sytimetable %}
+                    {% if subject[2] == 'friday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="align-middle">Saturday</td>
+
+                    {% for subject in sytimetable %}
+                    {% if subject[2] == 'saturday' %}
+                    <td class="{{ subject[5] }}">
+                        {% if usertype == 'teacher' %}
+                        <a href="{{ url_for('updateTimetable',id=subject[0],name=subject[1]) }}">
+                            <span class="fontsize">
+                                {{ subject[1] }}
+                            </span>
+                        </a>
+                        {% else %}
+                        <span class="fontsize">
+                            {{ subject[1] }}
+                        </span>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
